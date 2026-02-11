@@ -19,18 +19,22 @@ npm ls --depth=0
 1. Review compatibility signals:
    - [RN nightly tests](https://react-native-community.github.io/nightly-tests/)
    - [React Native Directory](https://reactnative.directory/packages?newArchitecture=false)
-2. Handle known risky packages:
+2. Align React companion packages when `react` is upgraded:
+   - `react-test-renderer` should match React major/minor (and usually patch).
+   - `@types/react` should match React major/minor (and usually patch).
+   - For React 19 upgrades, ensure `@testing-library/react-native` is `v13+`.
+3. Handle known risky packages:
    - `react-native-fast-image` -> prefer `@d11/react-native-fast-image` or `expo-image` (confirm with user)
    - `@react-native-cookies/cookies` -> prefer `@preeternal/react-native-cookie-manager` (confirm with user)
    - `react-native-code-push` -> treat as incompatible; disable for upgrade and consider `@appzung/react-native-code-push`, `@bravemobile/react-native-code-push`, or `expo-updates`
    - `react-native-image-crop-picker` -> upgrade to `>=0.51.1`; if unstable, plan migration to `expo-image-picker` (confirm with user)
-   - `react-native-network-logger` - lists `react` and `react-native` in peer deps as `*` which can be misleading. Upgrade to v2 if <target_version> >= 0.79.
+   - `react-native-network-logger` - lists `react` and `react-native` in peer deps as `*` which can be misleading. Upgrade to v2 if `target_version >= 0.79`.
    - `react-native-permissions` - upgrade to v5 if possible (requires RN 0.74+)
-3. Apply additional cleanup rules:
+4. Apply additional cleanup rules:
    - If `@rnx-kit/metro-resolver-symlinks` is present, remove it from deps and `metro.config.js` (Metro supports symlinks since 0.72)
    - If app uses `react-native-localize` timezone APIs and `@callstack/timezone-hermes-fix` is missing, ask whether to add it
-4. If no safe alternative is found for a critical dependency, ask for explicit user confirmation before continuing.
-5. Read only breaking/manual steps from RN blog posts between `current_version` and `target_version`.
+5. If no safe alternative is found for a critical dependency, ask for explicit user confirmation before continuing.
+6. Read only breaking/manual steps from RN blog posts between `current_version` and `target_version`.
 
 ## Related Skills
 

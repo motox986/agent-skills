@@ -70,6 +70,7 @@ grep -n "^diff --git" /tmp/rn-diff-<current_version>..<target_version>.diff
    - iOS build passes.
    - Android build passes.
    - tests/typecheck/lint pass or failures are documented with next actions.
+   - If `react` was upgraded, verify companion versions are aligned (`react-test-renderer`, `@types/react`).
    - If `target_version >= 0.81` and tests fail due to missing modules, add proper mocks.
      - Example (`BackHandler` mock removal): https://github.com/facebook/react-native/issues/52667#issuecomment-3094788618
 
